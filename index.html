@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livewell Housing Solutions Ltd - Cooperative Community Loan Request Form</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f4;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        display: block;
+        margin-top: 10px;
+    }
+
+    input, select, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        border: none;
+        background-color: #007BFF;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    </style>
+</head>
+<body>
+    <h1>Livewell Housing Solutions Ltd</h1>
+    <p>Motto: Own Your Tomorrow</p>
+    <h2>Loan Request Form</h2>
+    <form id="loan-request-form">
+        <label for="serial-number">Serial Number:</label>
+        <input type="text" id="serial-number" name="serial-number" required><br>
+
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required><br>
+        
+        <label for="loan">Select Loan Amount Category:</label>
+        <select id="loan" name="loan" required onchange="toggleBudgetAmount()">
+            <option value="0">0</option>
+            <option value="50000">50000</option>
+            <option value="100000">100000</option>
+            <option value="150000">150000</option>
+            <option value="200000">200000</option>
+            <option value="250000">250000</option>
+            <option value="300000">300000</option>
+            <option value="above">Specified Your Loan Amount</option>
+        </select><br>
+
+        <div id="budget-amount-section" style="display:none;">
+            <label for="budget-amount">Write your Loan Amount Request:</label>
+            <input type="text" id="budget-amount" name="budget-amount"><br>
+        </div>
+
+        <label for="loan-date">Preferred Loan Date:</label>
+        <input type="date" id="loan-date" name="loan-date" required><br>
+        
+        <label for="guarantor-name">Guarantor's Name:</label>
+        <input type="text" id="guarantor-name" name="guarantor-name" required><br>
+        
+        <label for="guarantor-serial">Guarantor's Serial No:</label>
+        <input type="text" id="guarantor-serial" name="guarantor-serial" required><br>
+        
+        <label for="guarantor-phone">Guarantor's Phone No:</label>
+        <input type="tel" id="guarantor-phone" name="guarantor-phone" required><br>
+        
+        <label for="guarantor-address">Guarantor's Address:</label>
+        <input type="text" id="guarantor-address" name="guarantor-address" required><br>
+
+        <label for="notes">Additional Notes:</label>
+        <textarea id="notes" name="notes"></textarea><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div>
+        <h2>Contact Information</h2>
+        <p>Contact Us: No 15 Ijegun road, old garage Ikotun.</p>
+        <p>Email: livewell.equity@gmail.com</p>
+        <p>Phone: 08021712005</p>
+        <p>Phone: 07045786155</p>
+    </div>
+
+    <div>
+        <p>Livewell Housing Solutions Ltd - Own Your Tomorrow!</p>
+    </div>
+
+    <script>
+    function toggleBudgetAmount() {
+        const loanSelect = document.getElementById('loan');
+        const budgetAmountSection = document.getElementById('budget-amount-section');
+        if (loanSelect.value === 'above') {
+            budgetAmountSection.style.display = 'block';
+        } else {
+            budgetAmountSection.style.display = 'none';
+            document.getElementById('budget-amount').value = ''; // Clear the value if hidden
+        }
+    }
+
+    document.getElementById('loan-request-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const formData = {
+            serialNumber: document.getElementById('serial-number').value,
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            loanType: document.getElementById('loan').value,
+            budgetAmount: document.getElementById('budget-amount').value,
+            loanDate: document.getElementById('loan-date').value,
+            guarantorName: document.getElementById('guarantor-name').value,
+            guarantorSerial: document.getElementById('guarantor-serial').value,
+            guarantorPhone: document.getElementById('guarantor-phone').value,
+            guarantorAddress: document.getElementById('guarantor-address').value,
+            notes: document.getElementById('notes').value
+        };
+
+        const applicantEmail = document.getElementById('email').value;
+        const mailtoLink = `mailto:mondaykingsley80@gmail.com?cc=${applicantEmail}&subject=Loan Request Form Submission&body=${encodeURIComponent(JSON.stringify(formData))}`;
+
+        window.location.href = mailtoLink;
+    });
+    </script>
+</body>
+</html>
+
+
+
